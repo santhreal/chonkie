@@ -174,6 +174,9 @@ class Visualizer:
             self.theme, self.text_color = self._get_theme(theme)
             self.theme_name = theme
         else:
+            # Empty theme would ZeroDivisionError in _get_color via index % len(theme).
+            if not theme:
+                raise ValueError("Custom theme must contain at least one color")
             self.text_color = ""
             self.theme = theme
             self.theme_name = "custom"

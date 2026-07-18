@@ -138,6 +138,11 @@ class TestVisualizerInitialization:
         with pytest.raises(ValueError, match="Invalid theme"):
             Visualizer(theme="invalid_theme")
 
+    def test_init_empty_custom_theme(self) -> None:
+        """Empty custom theme lists must be rejected before color cycling."""
+        with pytest.raises(ValueError, match="at least one color"):
+            Visualizer(theme=[])
+
 
 class TestVisualizerThemeManagement:
     """Test theme management methods."""
